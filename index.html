@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Wyckoff Crypto Radar - phân tích cấu trúc giá và khối lượng Binance Spot">
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Wyckoff Crypto Radar</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">W</div>
+    <div class="brand">
+      <h1>WYCKOFF <span>RADAR</span></h1>
+      <p>BINANCE SPOT · STRUCTURE & VOLUME</p>
+    </div>
+    <button id="installBtn" class="secondary hidden">Cài đặt</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">MARKET SCANNER</div>
+        <h2>Đọc cấu trúc thị trường.<br><span>Tìm tín hiệu có điều kiện.</span></h2>
+        <p class="muted">Quét 100 cặp Spot USDT thanh khoản cao và đánh giá các dấu hiệu Wyckoff theo quy tắc.</p>
+      </div>
+      <div class="controls">
+        <label for="interval">Khung thời gian</label>
+        <select id="interval">
+          <option value="15m">15 phút</option>
+          <option value="1h" selected>1 giờ</option>
+          <option value="4h">4 giờ</option>
+          <option value="1d">1 ngày</option>
+        </select>
+        <button id="scanBtn" class="primary">Quét thị trường</button>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><span>Coin phân tích</span><strong id="count">—</strong><small>Top 100 theo quote volume</small></article>
+      <article class="stat-card"><span>Spring tiềm năng</span><strong id="springs">—</strong><small>Phá đáy rồi đóng trở lại</small></article>
+      <article class="stat-card"><span>SOS</span><strong id="sos">—</strong><small>Phá vùng cao với volume</small></article>
+      <article class="stat-card"><span>Phân phối / suy yếu</span><strong id="weak">—</strong><small>UTAD / SOW tiềm năng</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><h3>Danh sách phân tích</h3><p id="status" class="muted">Nhấn “Quét thị trường” để tải dữ liệu công khai từ Binance.</p></div>
+        <input id="search" type="search" placeholder="Lọc coin, ví dụ BTC" aria-label="Lọc coin">
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="all">Tất cả</button>
+        <button class="filter" data-filter="spring">Spring</button>
+        <button class="filter" data-filter="sos">SOS / LPS</button>
+        <button class="filter" data-filter="distribution">Phân phối / SOW</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Coin</th><th>Giá</th><th>24h</th><th>Wyckoff</th><th>Score</th><th>Vol ×</th><th>Hành động</th></tr></thead>
+          <tbody id="results"><tr><td colspan="7" class="empty">Chưa có dữ liệu. Bắt đầu quét để phân tích.</td></tr></tbody>
+        </table>
+      </div>
+      <p class="footnote">Dữ liệu công khai Binance. Tín hiệu là heuristic, không phải lời khuyên đầu tư hoặc xác suất sinh lời.</p>
+    </section>
+
+    <section id="detail" class="panel detail hidden">
+      <div class="panel-head">
+        <div><h3 id="detailTitle">Phân tích coin</h3><p id="detailSub" class="muted"></p></div>
+        <button id="closeDetail" class="secondary">Đóng</button>
+      </div>
+      <div class="detail-grid">
+        <div class="metric"><span>Hỗ trợ gần</span><strong id="support">—</strong></div>
+        <div class="metric"><span>Kháng cự gần</span><strong id="resistance">—</strong></div>
+        <div class="metric"><span>Vô hiệu tham chiếu</span><strong id="invalidation">—</strong></div>
+        <div class="metric"><span>Mục tiêu minh họa 2R</span><strong id="target">—</strong></div>
+      </div>
+      <div class="chart-wrap"><canvas id="chart" height="260"></canvas></div>
+      <p id="detailText" class="detail-text"></p>
+    </section>
+
+    <section class="disclaimer">
+      <strong>Đọc kỹ trước khi giao dịch</strong>
+      <p>Wyckoff là cách diễn giải cung – cầu, không thể xác nhận chắc chắn “cá mập” đang mua hoặc bán. Mẫu hình có thể thất bại. Luôn xác nhận bằng biểu đồ, thanh khoản, xu hướng khung lớn và quản trị rủi ro. Các mức giá trong phần chi tiết chỉ là tham chiếu kỹ thuật đơn giản, không phải lệnh mua/bán tự động.</p>
+    </section>
+    <footer>WYCKOFF RADAR · Prototype 1.0 · <span id="updated">Chưa cập nhật</span></footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
